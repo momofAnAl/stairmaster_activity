@@ -21,10 +21,16 @@
 # 2. 1 step + 2 steps
 # 3. 2 steps + 1 step
  
-def climb_stairs(n):
-    pass
-
+def climb_stairs(n, memo = None):
+    memo = {} if memo is None else memo
     # at each step, how many choices do we have?
+    if n <= 2:
+        return n
+    if n in memo:
+        return memo[n]
+    memo[n] = climb_stairs(n -1 , memo) + climb_stairs(n-2, memo)
+    return memo[n]
+    
     # given each choice, how many combinations of steps are left?
     # is there a threshold below which we have only a limited number of combinations?
     # what threshold, and how many combinations?
